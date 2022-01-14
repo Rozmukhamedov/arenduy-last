@@ -1,0 +1,32 @@
+.best-products {
+  grid-area: bestproducts;
+}
+
+.best-products h2 {
+  color: #4fa3e2;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.best-products .products-flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.best-products .products-flex .slider-card {
+  flex-grow: 1;
+  margin: 10px;
+}
+
+@media (max-width: 1129px) {
+  .best-products .products-flex .slider-card {
+    width: 29%;
+  }
+}
+
+@media (max-width: 600px) {
+  .best-products .products-flex .slider-card {
+    width: 43%;
+  }
+}

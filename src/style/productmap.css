@@ -1,0 +1,16 @@
+.product-map {
+  grid-area: productMap;
+  width: 100%;
+  height: 400px;
+}
+
+.product-map .size-map {
+  width: 100%;
+  height: 400px;
+}
+
+@media (max-width: 982px) {
+  .product-map {
+    height: 300px;
+  }
+}

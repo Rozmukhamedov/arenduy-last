@@ -1,0 +1,29 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(4, auto);
+  gap: 30px;
+  grid-template-areas:
+    "productSlide productInformation"
+    "productSlide personInformation"
+    "productMap productDescription"
+    "productMap productDetail";
+}
+
+@media (max-width: 667px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+    grid-template-rows: repeat(8, auto);
+    gap: 30px;
+    grid-template-areas:
+      "productSlide"
+      "productSlide"
+      "productInformation"
+      "personInformation"
+      "productMap"
+      "productMap"
+      "productDescription"
+      "productDetail";
+  }
+}

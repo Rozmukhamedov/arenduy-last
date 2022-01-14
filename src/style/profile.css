@@ -1,0 +1,21 @@
+.profile-tabs {
+  border: 1px solid #707070;
+  border-radius: 10px;
+  display: inline-flex;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.profile-tabs .active {
+  color: #9a78cb;
+}
+
+.profile-tabs .setting-profile {
+  border-left: 1px solid #707070;
+  border-right: 1px solid #707070;
+}
+
+.profile-tabs a {
+  padding: 0 40px;
+  color: #58b7fd;
+}

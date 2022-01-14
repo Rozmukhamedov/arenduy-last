@@ -1,0 +1,26 @@
+.person-information {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  grid-area: personInformation;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.person-information .callback {
+  display: flex;
+  flex-direction: column;
+}
+
+.person-information .product-text h4 {
+  margin: 15px 0;
+}
+
+@media (max-width: 600px) {
+  .person-information {
+    width: 100%;
+    background: #bb9de5;
+  }
+}

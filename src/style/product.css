@@ -1,0 +1,86 @@
+.product-flex {
+  display: flex;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(4, auto);
+  gap: 30px;
+  grid-template-areas:
+    "productSlide productInformation"
+    "productSlide personInformation"
+    "productMap productDescription"
+    "productMap productDetail";
+}
+
+@media (max-width: 1129px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(4, auto);
+    gap: 30px;
+    grid-template-areas:
+      "productSlide productInformation"
+      "productSlide personInformation"
+      "productMap productDescription"
+      "productMap productDetail";
+  }
+}
+
+/* 
+.infoPerson {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 35px 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+} */
+
+/* .productTitle {
+  font-size: 28px;
+  color: #001d38;
+  margin: 5px;
+  line-height: 1;
+}
+.person {
+  display: flex;
+}
+
+.productPrice {
+  font-size: 30px;
+  color: #001d38;
+  margin: 5px auto;
+}
+
+.PersonName {
+  margin: 0;
+  font-size: 20px;
+  color: #001d38;
+  line-height: 1;
+}
+
+.personAvatar {
+  width: 100px;
+  height: 100px;
+}
+
+.buttons a {
+  text-decoration: none;
+  color: #fff;
+}
+.textProduct {
+  font-size: 22px;
+  margin: 20px 0 10px 0;
+  color: #001d38;
+}
+
+.map {
+  margin: 20px auto;
+}
+
+.mapTitle {
+  color: #001d38;
+  font-weight: 500;
+  margin: 22px 0;
+  font-size: 20px;
+} */

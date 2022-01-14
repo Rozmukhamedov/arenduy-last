@@ -1,0 +1,42 @@
+export default function CustomSmpButton({
+  btnClassName,
+  funcBtn,
+  iconBtn,
+  textBtn,
+  disabled,
+  width,
+  height,
+  fontSize,
+  color,
+  backgroundColor,
+  padding,
+  border,
+  borderRadius,
+  margin,
+  background,
+  minHeight,
+}) {
+  return (
+    <button
+      style={{
+        color,
+        backgroundColor,
+        fontSize,
+        width,
+        height,
+        padding,
+        border,
+        borderRadius,
+        margin,
+        background,
+        minHeight,
+      }}
+      className={btnClassName}
+      disabled={disabled}
+      onClick={funcBtn}
+    >
+      {textBtn}
+      {iconBtn}
+    </button>
+  );
+}

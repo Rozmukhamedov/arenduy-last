@@ -1,0 +1,76 @@
+.weather {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #e77765;
+  position: relative;
+  height: 170px;
+  grid-area: weather;
+}
+
+.weather.night {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #2d387b;
+  position: relative;
+  height: 170px;
+  grid-area: weather;
+}
+
+.weather .weather-day {
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+.weather .weather-day .icon-sun {
+  width: 120px;
+  height: auto;
+}
+.weather .weather-day .icon-moon {
+  width: 60px;
+  height: auto;
+  margin: 10px 0 0 30px;
+}
+
+.weather .weather-precipitation {
+  width: 38px;
+  height: auto;
+  margin: 10px 0 28px 10px;
+}
+
+.weather .weather-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.weather .weather-detail .weather-temperature {
+  font-size: 40px;
+  color: #fff;
+}
+
+.weather .weather-detail p {
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: #fff;
+}
+
+.weather .weather-detail h6 {
+  font-size: 16px;
+  margin-bottom: 3px;
+  color: #fff;
+}
+
+@media (max-width: 997px) {
+  .weather {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .weather {
+    width: 70%;
+  }
+}

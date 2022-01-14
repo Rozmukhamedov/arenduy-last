@@ -1,0 +1,8 @@
+.product-description {
+  grid-area: productDescription;
+  width: 70%;
+}
+
+.product-description p {
+  color: #8c8d8e;
+}

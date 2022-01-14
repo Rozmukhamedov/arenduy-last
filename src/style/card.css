@@ -1,0 +1,50 @@
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+.card-box {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.card-box .card-img {
+  overflow: hidden;
+}
+
+.card-box .card-img .btn {
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+
+.card-box .card-info {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.card-box .card-info .card-title h6 {
+  font-size: 17px;
+  color: #000;
+}
+
+.card-box .card-info .card-title .card-city {
+  display: flex;
+  padding-top: 6px;
+  font-size: 11px;
+  color: #707070;
+  text-transform: capitalize;
+}
+
+.card-box .card-info .card-city .fa {
+  margin-top: 2px;
+  color: #58b7fd;
+}
+
+.card-box .card-info .card-title .card-price {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

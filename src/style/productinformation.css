@@ -1,0 +1,29 @@
+.product-information {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  grid-area: productInformation;
+  height: 160px;
+}
+
+.product-information .product-text {
+  width: 90%;
+}
+
+.product-information .product-text p {
+  font-size: 14px;
+  color: #807f7f;
+  font-weight: 400;
+}
+
+.product-information .product-text h1 {
+  margin: 15px 0;
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .product-information {
+    width: 100%;
+  }
+}

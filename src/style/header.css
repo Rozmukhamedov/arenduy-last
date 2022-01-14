@@ -1,0 +1,100 @@
+.header-nav {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding: 0 120px;
+}
+
+.header-nav .header-logo {
+  width: 200px;
+  height: auto;
+}
+
+.header-nav .header-end {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-nav .header-end .button-icon-user {
+  font-size: 32px;
+  color: #fff;
+  padding: 3px 0 0 12px;
+}
+
+.header-nav .button {
+  height: 40px;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 17px;
+  color: #9a78cb;
+  padding: 10px 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  margin: 0 16px;
+}
+
+.map-icon {
+  margin-left: 10px;
+  margin-bottom: -4px;
+}
+
+.header-button {
+  margin: 0 1rem;
+  font-size: 2rem;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+}
+
+.header-button-close {
+  position: absolute;
+  margin-left: 22rem;
+}
+
+.header-sidebar {
+  background: rgb(255, 255, 255, 0.9);
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  transition: 350ms;
+  z-index: 10;
+}
+
+.header-sidebar .header-wrap {
+  width: 100%;
+  padding: 20px;
+}
+
+.header-sidebar .header-wrap .item-link .item-icon-dropdown {
+  margin-top: 6px;
+}
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+@media (max-width: 1129px) {
+  .header-nav {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-nav .mobile-logo {
+    text-align: center;
+    width: 700px;
+  }
+
+  .header-nav .header-end {
+    width: 70px;
+  }
+}

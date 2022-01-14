@@ -1,0 +1,20 @@
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App {
+  background: linear-gradient(0deg, #2c5c7f, #58b7fd);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1170px;
+  padding: 0 15px;
+}
