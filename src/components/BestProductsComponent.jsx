@@ -19,10 +19,10 @@ function BestProducts() {
 
   return (
     <div className="best-products">
-      <h2>Топовые Объявления</h2>
+      <h2>Объявления !</h2>
       <div className="products-flex">
         {products.map((product) => (
-          <Card cardClass="slider-card" key={product.slug} response={product} />
+          <Card cardClass="best-card" key={product.slug} response={product} />
         ))}
       </div>
     </div>

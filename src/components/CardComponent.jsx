@@ -101,7 +101,7 @@ function Card({ response, category, funcBtn, cardClass }) {
             fontSize="16px"
             borderRadius="10px"
             width="110px"
-            minHeight="50px"
+            minHeight="54px"
             height="40px"
           />
         </Link>

@@ -30,7 +30,7 @@ function Weather() {
   const day = dataCard.getDate();
   const year = dataCard.getUTCFullYear();
   const hours = dataCard.getHours();
-
+  console.log(weather);
   const newdate = day + "/" + month + "/" + year;
 
   return (

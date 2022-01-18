@@ -17,7 +17,7 @@ function Search({ Show, classForm }) {
     e.preventDefault();
 
     if (title != null) {
-      navigate(`search?${SEARCH_PARAM_NAMES.TITLE}=${title}`, {
+      navigate(`/search?${SEARCH_PARAM_NAMES.TITLE}=${title}`, {
         replace: true,
         state: `search/all/?search=${title}`,
       });

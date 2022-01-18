@@ -89,12 +89,21 @@
 }
 
 @media (max-width: 600px) {
+  .header-nav {
+    padding: 0 10px;
+  }
+  .header-nav .header-logo {
+    width: 160px;
+    height: auto;
+  }
+
   .header-nav .mobile-logo {
     text-align: center;
     width: 700px;
   }
 
   .header-nav .header-end {
-    width: 70px;
+    width: 70%;
+    justify-content: flex-start;
   }
 }

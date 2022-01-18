@@ -33,11 +33,22 @@ function Filter({ urlCategory, urlSubcategory }) {
     e.preventDefault();
 
     navigate(
-      `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
+      `/search/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
       {
         state: `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
       }
     );
+
+    // setTitle("");
+    // setCategory("");
+    // setSubCategory("");
+    // setCity("");
+    // setMinPrice("");
+    // setMaxPrice("");
+    // setMinArea("");
+    // setMaxArea("");
+    // setFloor("");
+    // setRoom("");
   };
 
   return (

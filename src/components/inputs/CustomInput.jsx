@@ -25,15 +25,7 @@ function CustomInput({
   }
 
   if (inputError) {
-    return (
-      <TextField
-        disabled
-        id="outlined-disabled"
-        label={label}
-        defaultValue="Hello World"
-        required
-      />
-    );
+    return <TextField disabled id="outlined-disabled" label={label} required />;
   }
 
   return (

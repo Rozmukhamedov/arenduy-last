@@ -19,9 +19,11 @@ function SearchResultPage() {
   const [productsError, productsIsLoading, productsFetcher] =
     useCustomFetcher();
 
+  console.log(products);
+
   useEffect(() => {
     productsFetcher(
-      (data) => setProducts(data),
+      (data) => console.log(data),
       `${URL}/${location.state}`,
       {}
     );

@@ -48,7 +48,8 @@ function YandexMap() {
       >
         {productsGeolocaitons.map((n) => (
           <div>
-            {split(`${n?.location}`, ",", 2)}
+            {/* {split(`${n?.location}`, ",", 2)} */}
+            {console.log(n.location)}
             <Placemark
               onClick={() => link(n)}
               geometry={[55.684758, 37.738521]}
