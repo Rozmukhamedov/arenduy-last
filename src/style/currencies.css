@@ -24,10 +24,10 @@
   margin: 6px 0;
 }
 
-@media (max-width: 997px) {
+@media (max-width: 996px) {
   .currencies {
-    margin-top: 76px;
-    width: 300px;
+    margin: 45px auto 0 auto;
+    width: 270px;
   }
 }
 

@@ -60,7 +60,11 @@ function SliderProducts() {
       <h2>Лучшая Объявления</h2>
       <Slider {...settings}>
         {products.map((product) => (
-          <Card cardClass="slider-card" key={product.slug} response={product} />
+          <Card
+            cardClass="slider-card-products"
+            key={product.slug}
+            response={product}
+          />
         ))}
       </Slider>
     </div>

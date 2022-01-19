@@ -103,7 +103,6 @@
   }
 
   .header-nav .header-end {
-    width: 70%;
-    justify-content: flex-start;
+    width: 50px;
   }
 }

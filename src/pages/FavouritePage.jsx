@@ -8,18 +8,19 @@ import { useEffect, useState } from "react";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import Error from "../components/Text/NotFoundComponent";
 import { remove } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 function FavouritePage() {
   const [products, setProducts] = useState([]);
   const [cookies] = useCookies(["tokens"]);
   const accessToken = cookies?.tokens?.access;
-
-  const myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${accessToken}`);
+  const navigate = useNavigate();
 
   const requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: new Headers({
+      Authorization: `Bearer ${accessToken}`,
+    }),
   };
 
   const [productsError, productsIsLoading, productsFetcher] =
@@ -54,6 +55,7 @@ function FavouritePage() {
       `${URL}/favorite/`,
       requestOptionsRemove
     );
+    navigate("/favourite");
   };
 
   if (productsIsLoading) return <Loader />;

@@ -9,13 +9,13 @@ import Error from "../components/Text/NotFoundComponent";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import { SEARCH_PARAM_NAMES, URL } from "../constants/applicationConstants";
 
-function SearchResultPage() {
+function FilterResultPage() {
   let location = useLocation();
   const { category } = useParams();
 
   const [searchParams] = useSearchParams();
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([1]);
   const [productsError, productsIsLoading, productsFetcher] =
     useCustomFetcher();
 
@@ -23,7 +23,7 @@ function SearchResultPage() {
 
   useEffect(() => {
     productsFetcher(
-      (data) => setProducts(data.results),
+      (data) => setProducts(data),
       `${URL}/${location.state}`,
       {}
     );
@@ -41,7 +41,7 @@ function SearchResultPage() {
         {products.lenght != 0 ? (
           products.map((product) => (
             <div key={product.slug}>
-              <Card response={product} category={category} />
+              <Card response={product} subcategory={product.subcategory} />
             </div>
           ))
         ) : (
@@ -52,4 +52,4 @@ function SearchResultPage() {
   );
 }
 
-export default SearchResultPage;
+export default FilterResultPage;

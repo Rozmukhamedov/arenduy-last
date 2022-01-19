@@ -11,6 +11,10 @@
   grid-template-rows: repeat(4, auto);
 }
 
+.products-page .cards-grid .products-card {
+  margin: 0 auto;
+}
+
 @media (max-width: 1129px) {
   .products-page .cards-grid {
     grid-template-columns: repeat(2, 1fr);

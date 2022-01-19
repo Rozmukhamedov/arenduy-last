@@ -2,6 +2,10 @@
   grid-area: bestproducts;
 }
 
+.best-products .products-flex .best-card {
+  margin: 10px auto;
+}
+
 .best-products h2 {
   color: #4fa3e2;
   text-align: center;
@@ -11,16 +15,16 @@
 .best-products .products-flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media (max-width: 1129px) {
   .best-products .products-flex .best-card {
-    width: 31%;
+    margin: 10px auto;
   }
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .best-products .products-flex .best-card {
     width: 45%;
   }
@@ -30,4 +34,4 @@
   .best-products .products-flex .best-card {
     width: 100%;
   }
-}
+} */

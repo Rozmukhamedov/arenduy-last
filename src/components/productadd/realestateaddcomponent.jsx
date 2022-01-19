@@ -15,13 +15,16 @@ function RealestateAdd() {
   const [title, setTitle] = useState("");
   const [subcategory, setSubcategory] = useState("flat");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+
   const [totalarea, setTotalarea] = useState("");
   const [rooms, setRooms] = useState("");
   const [floor, setFloor] = useState("");
-  const [price, setPrice] = useState();
+
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("toshkent");
   const [draft, setDraft] = useState(false);
+
   const [tag1, setTag1] = useState("Дом");
   const [tag2, setTag2] = useState("Тошкент");
 

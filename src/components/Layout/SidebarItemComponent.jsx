@@ -11,7 +11,6 @@ const SubMenu = ({ category, setSidebar, subnav, setSubnav }) => {
     useCustomFetcher();
 
   const [itemLink, setItemLink] = useState(false);
-  const showSubnav = () => setItemLink(!itemLink);
 
   useEffect(() => {
     subcategoriesFetcher(
@@ -23,7 +22,7 @@ const SubMenu = ({ category, setSidebar, subnav, setSubnav }) => {
 
   return (
     <>
-      <div class="item-link" onClick={() => setSubnav(!subnav)}>
+      <div class="item-link" onClick={() => setItemLink(!itemLink)}>
         <div>
           <div className="item-span">{category.name}</div>
         </div>
@@ -31,7 +30,7 @@ const SubMenu = ({ category, setSidebar, subnav, setSubnav }) => {
           {subnav ? <FaAngleUp /> : <FaAngleDown />}
         </div>
       </div>
-      {subnav &&
+      {itemLink &&
         subcategories.map((subcategory) => {
           return (
             <Link

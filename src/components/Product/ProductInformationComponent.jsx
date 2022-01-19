@@ -8,7 +8,10 @@ import "../../style/productinformation.css";
 import CustomSmpButton from "../CustomSmpButton";
 
 export default function ProductInformation({ response }) {
-  const [favourite, setFavourite] = useState(response?.is_favourite);
+  const [favourite, setFavourite] = useState(
+    response.is_favourite == true ? false : true
+  );
+  console.log(favourite);
 
   const [cookies] = useCookies(["tokens"]);
 
@@ -85,7 +88,7 @@ export default function ProductInformation({ response }) {
         height={"40px"}
         disabled={false}
         iconBtn={favourite == false ? <FaHeart /> : <FaRegHeart />}
-        funcBtn={() => addFavourite(response?.slug)}
+        funcBtn={() => addFavourite(response?.product?.slug)}
       />
 
       {/* {favourite == true ? (

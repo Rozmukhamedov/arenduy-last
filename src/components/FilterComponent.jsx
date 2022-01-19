@@ -33,7 +33,7 @@ function Filter({ urlCategory, urlSubcategory }) {
     e.preventDefault();
 
     navigate(
-      `/search/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
+      `/filter?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
       {
         state: `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
       }
@@ -101,7 +101,7 @@ function Filter({ urlCategory, urlSubcategory }) {
                   className="input"
                   required
                   onChange={(e) => setMinArea(e.target.value)}
-                  label="от 1 м^2"
+                  label="от 1 м²"
                   type="number"
                   variant="outlined"
                   style={{
@@ -112,7 +112,7 @@ function Filter({ urlCategory, urlSubcategory }) {
                   className="input"
                   required
                   onChange={(e) => setMaxArea(e.target.value)}
-                  label="до 100 м^2"
+                  label="до 100 м²"
                   type="number"
                   variant="outlined"
                   style={{

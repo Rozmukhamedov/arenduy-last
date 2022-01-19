@@ -33,7 +33,7 @@ function CustomInput({
       style={{
         width,
         height,
-        margin,
+        margin: margin,
       }}
       className={className}
       required
@@ -43,7 +43,7 @@ function CustomInput({
       onChange={(e) => setValue(e.target.value)}
     >
       {nameItem.map((option) => (
-        <MenuItem key={option.value} value={option.slug}>
+        <MenuItem key={option.key} value={option.slug}>
           {option.name}
         </MenuItem>
       ))}

@@ -41,6 +41,7 @@ function PrdouctsPage() {
               response={product}
               category={category}
               subcategory={subcategory}
+              cardClass="products-card"
             />
           ))
         ) : (

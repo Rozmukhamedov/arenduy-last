@@ -4,7 +4,7 @@ import { SEARCH_PARAM_NAMES } from "../constants/applicationConstants";
 import "../style/search.css";
 import { FaSearch } from "react-icons/fa";
 
-function Search({ Show, classForm }) {
+function Search({ func, classForm }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [title, setTitle] = useState(
@@ -22,7 +22,7 @@ function Search({ Show, classForm }) {
         state: `search/all/?search=${title}`,
       });
       setTitle("");
-      Show();
+      func(false);
     } else {
       alert("Пустая строка");
     }

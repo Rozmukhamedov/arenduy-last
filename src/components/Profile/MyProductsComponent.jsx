@@ -33,6 +33,7 @@ function MyProducts() {
   }, []);
 
   const removeProduct = (slug) => {
+    alert(slug);
     const requestOptionsDelete = {
       method: "DELETE",
       headers: myHeaders,
@@ -41,9 +42,10 @@ function MyProducts() {
 
     productsFetcher(
       () => {
-        const copiedProducts = [...products];
-        remove(copiedProducts, (product) => product.slug === slug);
-        setProducts(copiedProducts);
+        const updatedProducts = [...products].filter(
+          (product) => product.slug !== slug
+        );
+        setProducts(products);
       },
       `${URL}/product/delete/${slug}`,
       requestOptionsDelete
@@ -55,14 +57,21 @@ function MyProducts() {
   if (productsError) return <Error />;
 
   return (
-    <div className="cards-grid">
-      {size(products) != 0 ? (
-        products.map((p) => (
-          <Card key={p.slug} response={p} functBtn={removeProduct} />
-        ))
-      ) : (
-        <NoProducts />
-      )}
+    <div className="my-products">
+      <div className="cards-grid">
+        {size(products) != 0 ? (
+          products.map((p) => (
+            <Card
+              cardClass="products-card"
+              key={p.slug}
+              response={p}
+              functBtn={removeProduct}
+            />
+          ))
+        ) : (
+          <NoProducts />
+        )}
+      </div>
     </div>
   );
 }

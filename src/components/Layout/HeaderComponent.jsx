@@ -24,11 +24,11 @@ function Navbar() {
   const [categories, setCategories] = useState([]);
 
   const [sidebar, setSidebar] = useState(false);
-  const [subnav, setSubnav] = useState(false);
+  // const [subnav, setSubnav] = useState(false);
 
   const Show = () => {
     setSidebar(false);
-    setSubnav(false);
+    // setSubnav(false);
   };
 
   const [categoriesError, categoriesIsLoading, categoriesFetcher] =
@@ -51,14 +51,14 @@ function Navbar() {
             >
               <FaBars />
             </div>
-            <Link onClick={Show} to="/">
+            <Link onClick={() => setSidebar(false)} to="/">
               <img className="header-logo" src={IMAGES.imgLogo} alt="Arenduy" />
             </Link>
 
             <div className="header-end">
-              <Search classForm={"search"} Show={Show} />
+              <Search classForm={"search"} func={() => setSidebar()} />
 
-              <Link to="/map">
+              <Link to="/map" onClick={() => setSidebar(false)}>
                 <CustomSmpButton
                   textBtn={"Карта"}
                   background={"#fff"}
@@ -76,7 +76,7 @@ function Navbar() {
               </Link>
 
               {!isLoggedIn ? (
-                <Link to="/login">
+                <Link to="/login" onClick={() => setSidebar(false)}>
                   <CustomSmpButton
                     textBtn={"Войти"}
                     background={"#fff"}
@@ -92,7 +92,7 @@ function Navbar() {
                 </Link>
               ) : (
                 <>
-                  <Link onClick={Show} to="addform">
+                  <Link onClick={() => setSidebar(false)} to="addform">
                     <CustomSmpButton
                       background={"#fff"}
                       fontSize={"19px"}
@@ -105,7 +105,7 @@ function Navbar() {
                       iconBtn={<FaPlus />}
                     />
                   </Link>
-                  <Link onClick={Show} to="favourite">
+                  <Link onClick={() => setSidebar(false)} to="favourite">
                     <CustomSmpButton
                       background={"none"}
                       fontSize={"32px"}
@@ -118,7 +118,7 @@ function Navbar() {
                     />
                   </Link>
                   <Link
-                    onClick={Show}
+                    onClick={() => setSidebar(false)}
                     className="button-icon-user"
                     to="profile"
                   >
@@ -136,8 +136,8 @@ function Navbar() {
               {categories.map((category) => {
                 return (
                   <SubMenu
-                    subnav={subnav}
-                    setSubnav={setSubnav}
+                    // subnav={subnav}
+                    // setSubnav={setSubnav}
                     setSidebar={setSidebar}
                     key={category.slug}
                     category={category}
@@ -145,7 +145,10 @@ function Navbar() {
                 );
               })}
             </div>
-            <div className="header-button header-button-close" onClick={Show}>
+            <div
+              className="header-button header-button-close"
+              onClick={() => setSidebar(false)}
+            >
               <FaTimes />
             </div>
           </div>
@@ -165,16 +168,18 @@ function Navbar() {
               <img className="header-logo" src={IMAGES.imgLogo} alt="Arenduy" />
             </Link>
             <div className="header-end">
-              <CustomSmpButton
-                fontSize={"30px"}
-                background={"none"}
-                color={"#fff"}
-                padding={"10px 10px"}
-                border={"none"}
-                borderRadius={"6px"}
-                padding={"10px 15px"}
-                iconBtn={<FaSearchLocation className="map-icon" />}
-              />
+              <Link to="/map">
+                <CustomSmpButton
+                  fontSize={"30px"}
+                  background={"none"}
+                  color={"#fff"}
+                  padding={"10px 10px"}
+                  border={"none"}
+                  borderRadius={"6px"}
+                  padding={"10px 15px"}
+                  iconBtn={<FaSearchLocation className="map-icon" />}
+                />
+              </Link>
             </div>
           </div>
           <div
@@ -185,9 +190,9 @@ function Navbar() {
               {categories.map((category) => {
                 return (
                   <SubMenu
-                    subnav={subnav}
-                    setSubnav={setSubnav}
-                    setSidebar={setSidebar}
+                    // subnav={subnav}
+                    // setSubnav={setSubnav}
+                    // setSidebar={setSidebar}
                     key={category.slug}
                     category={category}
                   />

@@ -19,6 +19,8 @@ import SettingProfile from "../components/Profile/SettingProfileComponent";
 import MyProducts from "../components/Profile/MyProductsComponent";
 import FavouritePage from "../pages/FavouritePage";
 import YandexMap from "../components/YandexMap";
+import FilterResultPage from "../pages/FilterResultPage";
+import CreateProduct from "../components/CreateProductComponent";
 
 function RoutesMain() {
   return (
@@ -27,6 +29,9 @@ function RoutesMain() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="search" element={<SearchResultPage />} />
+            <Route path="filter" element={<FilterResultPage />} />
+            <Route path="create-product" element={<CreateProduct />} />
             <Route
               path="login"
               element={
@@ -88,7 +93,7 @@ function RoutesMain() {
               path=":category/:subcategory/:slug"
               element={<ProductPage />}
             />
-            <Route path="search" element={<SearchResultPage />} />
+
             <Route path="*" element={<Notfoundpage />} />
           </Route>
         </Routes>
