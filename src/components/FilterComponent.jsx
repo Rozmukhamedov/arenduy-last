@@ -1,5 +1,5 @@
-import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { MenuItem, TextField } from "@mui/material";
+import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_NAMES, URL } from "../constants/applicationConstants";
 import "../style/filter.css";
@@ -27,28 +27,31 @@ function Filter({ urlCategory, urlSubcategory }) {
   const [floor, setFloor] = useState("");
   const [room, setRoom] = useState("");
 
+  // transport
+
+  const [color, setColor] = useState("");
+  const [fueltype, setFueltype] = useState("");
+  const [transmission, setTransmission] = useState("");
+  const [mileage, setMileage] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    navigate(
-      `/filter?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
-      {
-        state: `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
-      }
-    );
-
-    // setTitle("");
-    // setCategory("");
-    // setSubCategory("");
-    // setCity("");
-    // setMinPrice("");
-    // setMaxPrice("");
-    // setMinArea("");
-    // setMaxArea("");
-    // setFloor("");
-    // setRoom("");
+    category == "real_estate"
+      ? navigate(
+          `/filter?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
+          {
+            state: `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&min_area=${minArea}&max_area=${maxArea}&city=${city}&${subCategory}s_floor=${floor}&${subCategory}s_room=${room}/`,
+          }
+        )
+      : navigate(
+          `/filter?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&${subCategory}s__transmission=${transmission}&${subCategory}s__fuel_type=${fueltype}&city=${city}&${subCategory}s__volor=${color}&${subCategory}s__mileage=${mileage}/`,
+          {
+            state: `search/${subCategory}/?search=${title}&min_price=${minPrice}&max_price=${maxPrice}&${subCategory}s__transmission=${transmission}&${subCategory}s__fuel_type=${fueltype}&city=${city}&${subCategory}s__volor=${color}&${subCategory}s__mileage=${mileage}/`,
+          }
+        );
   };
 
   return (
@@ -167,6 +170,7 @@ function Filter({ urlCategory, urlSubcategory }) {
             ) : (
               <>
                 <CustomInput
+                  className="input"
                   title={subCategory}
                   label="Подкатегория"
                   url={`${URL}/category/transport/`}
@@ -174,6 +178,86 @@ function Filter({ urlCategory, urlSubcategory }) {
                   width="180px"
                   margin="0 5px 10px 5px"
                   category={category}
+                />
+                <TextField
+                  className="input"
+                  required
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  label="от 1"
+                  type="number"
+                  variant="outlined"
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
+                />
+                <TextField
+                  className="input"
+                  required
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  label="до 1 000 000 000"
+                  type="number"
+                  variant="outlined"
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
+                />
+                <CustomInput
+                  margin="0 5px 10px 5px"
+                  className="input"
+                  label="Цвет"
+                  url={`${URL}/transport/color/`}
+                  setValue={setColor}
+                />
+                <TextField
+                  select
+                  className="input"
+                  label="Тип топлива"
+                  required
+                  value={fueltype}
+                  onChange={(e) => setFueltype(e.target.value)}
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
+                >
+                  <MenuItem key={1} value="benzin">
+                    Бензин
+                  </MenuItem>
+                  <MenuItem key={2} value="elektr">
+                    Электро
+                  </MenuItem>
+                  <MenuItem key={3} value="dizel">
+                    Дизел
+                  </MenuItem>
+                </TextField>
+                <TextField
+                  className="input"
+                  select
+                  label="Коробка передач"
+                  required
+                  value={transmission}
+                  onChange={(e) => setTransmission(e.target.value)}
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
+                >
+                  <MenuItem key={1} value="mexanika">
+                    Механика
+                  </MenuItem>
+                  <MenuItem key={2} value="avtomat">
+                    Автомат
+                  </MenuItem>
+                </TextField>
+                <TextField
+                  className="input"
+                  type="number"
+                  required
+                  value={mileage}
+                  onChange={(e) => setMileage(e.target.value)}
+                  label="Пробег"
+                  variant="outlined"
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
                 />
               </>
             )}

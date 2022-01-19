@@ -6,12 +6,13 @@ import Loader from "../components/ui/LoaderComponent";
 import NotFoundComponent from "../components/Text/NotFoundComponent";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import { useCookies } from "react-cookie";
-import ProductRealEstate from "../components/ProductCategory/ProductRealEstate";
+import ProductRealEstate from "../components/ProductCategory/ProductRealEstateComponent";
+import ProductTransport from "../components/ProductCategory/ProductTransportComponent";
 
 function ProductPage() {
   const { slug, category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
-
+  console.log(products);
   const [cookies] = useCookies(["tokens"]);
 
   const [accessToken, setAccessToken] = useState(cookies?.tokens?.access);
@@ -53,7 +54,19 @@ function ProductPage() {
 
   return (
     <>
-      <ProductRealEstate products={products}></ProductRealEstate>
+      {category == "real_estate" ? (
+        <ProductRealEstate
+          subcategory={subcategory}
+          slug={slug}
+          products={products}
+        ></ProductRealEstate>
+      ) : (
+        <ProductTransport
+          subcategory={subcategory}
+          slug={slug}
+          products={products}
+        ></ProductTransport>
+      )}
     </>
   );
 }

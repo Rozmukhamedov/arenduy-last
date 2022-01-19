@@ -1,31 +1,26 @@
-.product-grid {
+.product-transport-grid {
   display: grid;
   grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: repeat(3, auto);
   gap: 30px;
   grid-template-areas:
     "productSlide productInformation"
     "productSlide personInformation"
-    "productMap productDescription"
-    "productMap productDetail"
-    "otherslider otherslider";
+    "productDetail productDescription";
 }
 
 @media (max-width: 667px) {
-  .product-grid {
+  .product-transport-grid {
     display: grid;
     grid-template-columns: repeat(1, 100%);
-    grid-template-rows: repeat(9, auto);
+    grid-template-rows: repeat(8, auto);
     gap: 30px;
     grid-template-areas:
       "productSlide"
       "productSlide"
       "productInformation"
       "personInformation"
-      "productMap"
-      "productMap"
       "productDescription"
-      "productDetail"
-      "otherslider";
+      "productDetail";
   }
 }

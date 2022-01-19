@@ -16,12 +16,11 @@ function MyProducts() {
   const [productsError, productsIsLoading, productsFetcher] =
     useCustomFetcher();
 
-  const myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${accessToken}`);
-
   const requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: new Headers({
+      Authorization: `Bearer ${accessToken}`,
+    }),
   };
 
   useEffect(() => {
@@ -36,7 +35,9 @@ function MyProducts() {
     alert(slug);
     const requestOptionsDelete = {
       method: "DELETE",
-      headers: myHeaders,
+      headers: new Headers({
+        Authorization: `Bearer ${accessToken}`,
+      }),
       redirect: "follow",
     };
 
@@ -45,7 +46,7 @@ function MyProducts() {
         const updatedProducts = [...products].filter(
           (product) => product.slug !== slug
         );
-        setProducts(products);
+        setProducts(updatedProducts);
       },
       `${URL}/product/delete/${slug}`,
       requestOptionsDelete

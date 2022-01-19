@@ -1,71 +1,68 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Container, Grid } from "@mui/material";
-import '../style/login.css';
+import CustomSmpButton from "../components/CustomSmpButton";
+import { URLACC } from "../constants/applicationConstants";
+import useCustomFetcher from "../hooks/useCustomFetcher";
+import "../style/login.css";
 
 function Confirm() {
   const [code, setCode] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  console.log(useLocation())
+  const [ConfirmError, ConfirmIsLoading, ConfirmFetcher] = useCustomFetcher();
 
-  async function signUp(e) {
+  const ConfirmAcc = (e) => {
     e.preventDefault();
-  
 
-    const response = await fetch(
-      "https://rent-vlk.herokuapp.com/accounts/reset-password/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          // phone_number: number,
-          code: code,
-        }),
-      }
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        phone_number: location.state,
+        code: code,
+      }),
+    };
+
+    ConfirmFetcher(
+      (response) => {
+        alert(response);
+      },
+      `${URLACC}/reset-password/`,
+      requestOptions
     );
-    const res = await response.json()
-    console.log(res)
-    navigate("/login")
-  }
+    navigate("/", { replace: true });
+  };
 
   return (
-    <>
-      <>
-        <div className="back">
-          <Container>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <div className="main confirm">
-                <div className="regiser">
-                  <form onSubmit={signUp}>
-                    <label className="labelAuth" for="chk" aria-hidden="true">
-                      Регистрация
-                    </label>
-                    <input
-                    className="inputAuth"
-                      type="number"
-                      value={code}
-                      placeholder="Код подтверждение"
-                      onChange={(e) => setCode(e.target.value)}
-                    />
-                    <button className="buttonAuth" type="submit">Регистрация</button>
-                  </form>
-                </div>
-              </div>
-            </Grid>
-          </Container>
-        </div>
-      </>
-    </>
+    <div className="confirm-border">
+      <h3>Подтверждение</h3>
+      <form onSubmit={ConfirmAcc}>
+        <input
+          required
+          type="number"
+          value={code}
+          placeholder="Код подтверждение"
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <CustomSmpButton
+          textBtn={"Подтверждение"}
+          background={"#bb9de5"}
+          fontSize={"16px"}
+          color={"#fff"}
+          padding={"10px 10px"}
+          border={"none"}
+          borderRadius={"5px"}
+          height={"40px"}
+          width={"100%"}
+          margin={"10px 0 0 5px "}
+        />
+      </form>
+    </div>
   );
 }
 

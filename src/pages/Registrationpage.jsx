@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Grid } from "@mui/material";
-import "../style/login.css";
+import { Link, useNavigate } from "react-router-dom";
+import "../style/registration.css";
+import CustomSmpButton from "../components/CustomSmpButton";
+import useCustomFetcher from "../hooks/useCustomFetcher";
+import { URLACC } from "../constants/applicationConstants";
 
 function Registration() {
   const [name, setName] = useState("");
@@ -11,86 +13,96 @@ function Registration() {
 
   const navigate = useNavigate();
 
+  const [registationError, registrationIsLoading, registrationFetcher] =
+    useCustomFetcher();
+
   const signUp = (e) => {
     e.preventDefault();
 
-    // const response = await fetch(
-    //   "https://rent-vlk.herokuapp.com/accounts/signup/",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Accept": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       first_name: name,
-    //       last_name: surname,
-    //       phone_number: number,
-    //       password: password,
-    //   }),
-    //   }
-    // );
-    // const res = await response.json()
-    // console.log(res)
-    navigate("/registration/confirm", { replace: true, state: number });
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify({
+        first_name: name,
+        last_name: surname,
+        phone_number: number,
+        password: password,
+      }),
+    };
+
+    registrationFetcher(
+      () => {
+        navigate("/registration/confirm", { replace: true, state: number });
+      },
+      `${URLACC}/signup/`,
+      requestOptions
+    );
   };
 
   return (
-    <>
-      <>
-        <div className="back">
-          <Container>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <div className="main">
-                <div className="register">
-                  <form onSubmit={signUp}>
-                    <label className="labelAuth" for="chk" aria-hidden="true">
-                      Регистрация
-                    </label>
-                    <input
-                      className="inputAuth"
-                      type="name"
-                      value={name}
-                      placeholder="Имя"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                    <input
-                      className="inputAuth"
-                      type="surname"
-                      value={surname}
-                      placeholder="Фамилия"
-                      onChange={(e) => setSurname(e.target.value)}
-                    />
-                    <input
-                      className="inputAuth"
-                      type="tel"
-                      value={number}
-                      placeholder="Номер телефона"
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <input
-                      className="inputAuth"
-                      type="password"
-                      value={password}
-                      placeholder="Пароль"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button className="buttonAuth" type="submit">
-                      Регистрация
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </Grid>
-          </Container>
+    <div className="registration-border">
+      <h3>Регистрация</h3>
+      <form onSubmit={signUp}>
+        <input
+          required
+          type="name"
+          value={name}
+          placeholder="Имя"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          required
+          type="surname"
+          value={surname}
+          placeholder="Фамилия"
+          onChange={(e) => setSurname(e.target.value)}
+        />
+        <input
+          required
+          type="tel"
+          value={number}
+          placeholder="Номер телефона"
+          onChange={(e) => setNumber(e.target.value)}
+        />
+        <input
+          required
+          type="password"
+          value={password}
+          placeholder="Пароль"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="registration-flex">
+          <CustomSmpButton
+            textBtn={"Регистрация"}
+            background={"#bb9de5"}
+            fontSize={"16px"}
+            color={"#fff"}
+            padding={"10px 10px"}
+            border={"none"}
+            borderRadius={"5px"}
+            height={"40px"}
+            width={"120px"}
+          />
+
+          <Link to="/login">
+            <CustomSmpButton
+              textBtn={"Вход"}
+              color={"#bb9de5"}
+              fontSize={"16px"}
+              padding={"10px 10px"}
+              border={"none"}
+              borderRadius={"5px"}
+              height={"40px"}
+            />
+          </Link>
         </div>
-      </>
-    </>
+      </form>
+    </div>
   );
 }
 

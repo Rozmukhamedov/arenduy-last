@@ -10,7 +10,7 @@ export default function ProductMap({ response }) {
       <YMaps>
         <Map
           width="100%"
-          height="400px"
+          height="330px"
           defaultState={{
             center: [array[0], array[1]],
             zoom: 9,

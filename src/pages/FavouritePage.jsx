@@ -64,7 +64,7 @@ function FavouritePage() {
 
   return (
     <>
-      <h1>Мои объявления</h1>
+      <h1>Избранное</h1>
       <div className="cards-grid">
         {products.length != 0 ? (
           products.map((product) => (

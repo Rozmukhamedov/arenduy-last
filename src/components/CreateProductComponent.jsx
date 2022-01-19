@@ -51,7 +51,7 @@ function CreateProduct() {
   const location = useGeoLocation();
   const lat = [location.lat, location.lng];
   const all = lat.join(", ");
-
+  console.log(all);
   const [cookies] = useCookies(["tokens"]);
   const [accessToken, setAccessToken] = useState(cookies?.tokens?.access);
 

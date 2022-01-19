@@ -1,0 +1,33 @@
+.slider-other-products {
+  grid-area: otherslider;
+  width: 100%;
+}
+
+.slider-card {
+  margin: 10px 5px;
+}
+
+.slider-othe-products h2 {
+  color: #4fa3e2;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.slider-card-products {
+  margin: 10px auto;
+}
+
+@media (max-width: 1129px) {
+  .slider-other-products {
+    width: 100%;
+    height: 450px;
+  }
+
+  .slider-other-products .slick-slide img {
+    border: 5px solid #fff;
+    display: block;
+    margin: auto;
+    height: 300px;
+    border-radius: 30px;
+  }
+}

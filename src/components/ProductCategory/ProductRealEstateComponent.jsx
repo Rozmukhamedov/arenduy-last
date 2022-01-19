@@ -5,9 +5,9 @@ import PersonInformation from "../Product/PersonInformationComponent";
 import ProductMap from "../Product/ProductMapComponent";
 import ProductDescription from "../Product/ProductDescriptionComponent";
 import ProductDetail from "../Product/ProductDetailsComponent";
+import SliderOtherProducts from "../Product/ProductsSliderComponent";
 
-function ProductRealEstate(products) {
-  console.log(products);
+function ProductRealEstate(products, subcategory, slug) {
   return (
     <div className="product-grid">
       <ProductSlide />
@@ -16,6 +16,11 @@ function ProductRealEstate(products) {
       <ProductMap response={products?.products} />
       <ProductDescription response={products?.products?.product} />
       <ProductDetail response={products?.products} />
+      <SliderOtherProducts
+        response={products}
+        subcategory={subcategory}
+        slug={slug}
+      ></SliderOtherProducts>
     </div>
   );
 }
