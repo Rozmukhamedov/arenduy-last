@@ -84,7 +84,7 @@ function Navbar() {
                 </Link>
               ) : (
                 <>
-                  <Link onClick={() => setSidebar(false)} to="addform">
+                  <Link onClick={() => setSidebar(false)} to="create-product">
                     <CustomSmpButton
                       background={"#fff"}
                       fontSize={"19px"}

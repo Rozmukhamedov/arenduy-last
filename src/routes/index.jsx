@@ -11,10 +11,7 @@ import PublicAuth from "../hoc/PublicAuth";
 import { AuthProvider } from "../hoc/AuthProvider";
 import Confirm from "../pages/ConfirmPage";
 import ProfilePage from "../pages/ProfilePage";
-import ProductAdd from "../pages/Productaddpage";
 import SearchResultPage from "../pages/SearchResultPage";
-import RealestateAdd from "../components/productadd/realestateaddcomponent";
-import TransportAdd from "../components/productadd/transportaddcomponent";
 import SettingProfile from "../components/Profile/SettingProfileComponent";
 import MyProducts from "../components/Profile/MyProductsComponent";
 import FavouritePage from "../pages/FavouritePage";
@@ -31,7 +28,7 @@ function RoutesMain() {
             <Route index element={<Home />} />
             <Route path="search" element={<SearchResultPage />} />
             <Route path="filter" element={<FilterResultPage />} />
-            <Route path="create-product" element={<CreateProduct />} />
+
             <Route
               path="login"
               element={
@@ -57,6 +54,14 @@ function RoutesMain() {
               }
             />
             <Route
+              path="create-product"
+              element={
+                <PrivateAuth>
+                  <CreateProduct />
+                </PrivateAuth>
+              }
+            />
+            <Route
               path="profile"
               element={
                 <PrivateAuth>
@@ -67,17 +72,7 @@ function RoutesMain() {
               <Route path="setting-profile" element={<SettingProfile />} />
               <Route path="myproducts" element={<MyProducts />} />
             </Route>
-            <Route
-              path="addform"
-              element={
-                <PrivateAuth>
-                  <ProductAdd />
-                </PrivateAuth>
-              }
-            >
-              <Route path="real-estate" element={<RealestateAdd />} />
-              <Route path="transport" element={<TransportAdd />} />
-            </Route>
+
             <Route
               path="favourite"
               element={
