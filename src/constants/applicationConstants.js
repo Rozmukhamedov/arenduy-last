@@ -1,4 +1,4 @@
-export const URL = `http://185.217.131.19:8000//v1`;
+export const URL = `http://185.217.131.19:8000/v1`;
 export const URLACC = `http://185.217.131.19:8000/accounts`;
 
 export const CURRENCIES_API_URL = `https://nbu.uz/exchange-rates/json/`;
