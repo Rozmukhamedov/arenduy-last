@@ -11,7 +11,6 @@ export default function ProductInformation({ response }) {
   const [favourite, setFavourite] = useState(
     response.is_favourite == true ? false : true
   );
-  console.log(favourite);
 
   const [cookies] = useCookies(["tokens"]);
 

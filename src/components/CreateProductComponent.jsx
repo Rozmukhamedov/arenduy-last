@@ -63,8 +63,6 @@ function CreateProduct() {
   const updateUploadedFiles = (files) =>
     setNewUserInfo({ ...newUserInfo, Images: files });
 
-  console.log(newUserInfo);
-
   const [createProductsError, createProductsIsLoading, createProductsFetcher] =
     useCustomFetcher();
 

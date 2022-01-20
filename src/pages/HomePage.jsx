@@ -5,19 +5,33 @@ import Weather from "../components/ui/WeatherComponent";
 import SliderComponent from "../components/SliderProductsComponent";
 import BestProducts from "../components/BestProductsComponent";
 import "../style/home.css";
+import { useState, useEffect } from "react";
+import LogoLoader from "../images/arenduy5.gif";
 
 function Home() {
+  const [loaderLogo, setLoaderLogo] = useState(false);
   const Show = () => {};
+
+  useEffect(() => {
+    setTimeout(() => setLoaderLogo(true), 2400);
+  }, []);
+
   return (
     <>
-      <Search classForm={"mobile-search"} Show={Show} />
-      <div className="main-grid">
-        <Currencies />
-        <Weather />
-        <Carousel />
-        <SliderComponent />
-        <BestProducts />
-      </div>
+      {loaderLogo ? (
+        <>
+          <Search classForm={"mobile-search"} Show={Show} />
+          <div className="main-grid">
+            <Currencies />
+            <Weather />
+            <Carousel />
+            <SliderComponent />
+            <BestProducts />
+          </div>
+        </>
+      ) : (
+        <img id="img1" src={LogoLoader} />
+      )}
     </>
   );
 }

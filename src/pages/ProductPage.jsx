@@ -12,7 +12,7 @@ import ProductTransport from "../components/ProductCategory/ProductTransportComp
 function ProductPage() {
   const { slug, category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
-  console.log(products);
+
   const [cookies] = useCookies(["tokens"]);
 
   const [accessToken, setAccessToken] = useState(cookies?.tokens?.access);

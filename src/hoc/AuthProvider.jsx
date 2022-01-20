@@ -27,8 +27,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateToken = () => {
-    console.log("updated");
-
     const requestOptions = {
       method: "POST",
       headers: {
