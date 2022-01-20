@@ -6,12 +6,15 @@ import { URL } from "../../constants/applicationConstants";
 import Card from "../CardComponent";
 import Error from "../Text/NotFoundComponent";
 import NoProducts from "../Text/NoProductsComponent";
-import { remove, size } from "lodash";
+import { size } from "lodash";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function MyProducts() {
+  const navigate = useNavigate();
   const [cookies] = useCookies(["tokens"]);
   const accessToken = cookies.tokens.access;
+
   const [products, setProducts] = useState([]);
   const [productsError, productsIsLoading, productsFetcher] =
     useCustomFetcher();
@@ -32,13 +35,11 @@ function MyProducts() {
   }, []);
 
   const removeProduct = (slug) => {
-    alert(slug);
     const requestOptionsDelete = {
       method: "DELETE",
       headers: new Headers({
         Authorization: `Bearer ${accessToken}`,
       }),
-      redirect: "follow",
     };
 
     productsFetcher(
@@ -51,6 +52,7 @@ function MyProducts() {
       `${URL}/product/delete/${slug}`,
       requestOptionsDelete
     );
+    navigate("/");
   };
 
   if (productsIsLoading) return <Loader />;
@@ -66,7 +68,7 @@ function MyProducts() {
               cardClass="products-card"
               key={p.slug}
               response={p}
-              functBtn={removeProduct}
+              removeProduct={removeProduct}
             />
           ))
         ) : (

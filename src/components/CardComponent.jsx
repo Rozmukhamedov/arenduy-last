@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import { useAlert } from "react-alert";
 
-function Card({ response, category, funcBtn, cardClass }) {
+function Card({ response, category, funcBtn, cardClass, removeProduct }) {
   const location = useLocation();
   const navigate = useNavigate();
   const alert = useAlert();
@@ -32,8 +32,6 @@ function Card({ response, category, funcBtn, cardClass }) {
         slug: slug,
       }),
     };
-
-    console.log(cookies);
 
     if (cookies?.tokens != undefined) {
       productsFetcher(() => {}, `${URL}/favorite/`, requestOptions);
@@ -60,8 +58,7 @@ function Card({ response, category, funcBtn, cardClass }) {
         }}
       >
         <div className="btn">
-          {location.pathname == "/profile/myproducts" ||
-          location.pathname == "/favourite" ? (
+          {location.pathname == "/favourite" ? (
             <CustomSmpButton
               fontSize="30px"
               background="none"
@@ -69,6 +66,16 @@ function Card({ response, category, funcBtn, cardClass }) {
               border="none"
               color="red"
               funcBtn={() => funcBtn(response?.slug)}
+              iconBtn={<FaTrash />}
+            />
+          ) : location.pathname == "/profile/myproducts" ? (
+            <CustomSmpButton
+              fontSize="30px"
+              background="none"
+              zIndex="1"
+              border="none"
+              color="red"
+              funcBtn={() => removeProduct(response?.slug)}
               iconBtn={<FaTrash />}
             />
           ) : (

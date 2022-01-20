@@ -55,7 +55,7 @@ function FavouritePage() {
       `${URL}/favorite/`,
       requestOptionsRemove
     );
-    navigate("/favourite");
+    navigate("/");
   };
 
   if (productsIsLoading) return <Loader />;
@@ -64,7 +64,7 @@ function FavouritePage() {
 
   return (
     <>
-      <h1>Избранное</h1>
+      <h1>Избранные</h1>
       <div className="cards-grid">
         {products.length != 0 ? (
           products.map((product) => (

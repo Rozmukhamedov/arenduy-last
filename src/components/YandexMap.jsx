@@ -28,6 +28,18 @@ function YandexMap() {
     );
   }, []);
 
+  function locM(props) {
+    const locM = split(`${props?.location}`, ",", 2);
+    console.log(locM[0]);
+    return locM[0];
+  }
+
+  function locN(props) {
+    const locN = split(`${props?.location}`, ",", 2);
+    console.log(locN[1]);
+    return locN[1];
+  }
+
   if (mapIsLoading) return <Loader />;
 
   if (mapError) return <h1>Error</h1>;
@@ -40,19 +52,17 @@ function YandexMap() {
     <YMaps>
       <Map
         defaultState={{
-          center: [55.684758, 37.738521],
+          center: [41.2994958, 69.2400734],
           zoom: 9,
         }}
         width="100%"
         height="80vh"
       >
         {productsGeolocaitons.map((n) => (
-          <div>
-            {/* {split(`${n?.location}`, ",", 2)} */}
-            {console.log(n.location)}
+          <div key={n.key}>
             <Placemark
               onClick={() => link(n)}
-              geometry={[55.684758, 37.738521]}
+              geometry={[locM(n), locN(n)]}
               options={{
                 // iconLayout: "default#images",
                 iconImageHref:

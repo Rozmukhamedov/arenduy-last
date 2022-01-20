@@ -153,54 +153,7 @@ function CreateProduct() {
       );
     }
 
-    // try {
-    //   const response = await fetch(
-    //     `${URL}/real_estate/flat/add/
-    //   `,
-    //     {
-    //       method: "POST",
-    //       headers: new Headers({
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${accessToken}`,
-    //       }),
-    //       body: JSON.stringify({
-    //         product: {
-    //           title: title,
-    //           description: description,
-    //           price: price,
-    //           address: address,
-    //           city: city,
-    //           draft: draft,
-    //           subcategory: subcategory,
-    //           location: all,
-    //           tags: [tag1, tag2],
-    //         },
-    //         total_area: totalarea,
-    //         rooms: rooms,
-    //         floor: floor,
-    //       }),
-    //     }
-    //   );
-
-    //   const dataSlug = await response.json();
-
-    //   if (response.status === 201) {
-    //     console.log("123");
-    //     const data = new FormData();
-    //     data.append("media[]", multipleFiles[0], multipleFiles[0]);
-
-    //     const res = await fetch(`${URL}/upload_image/${dataSlug}`, {
-    //       method: "POST",
-    //       headers: new Headers({
-    //         "Content-Type": "multipart/form-data",
-    //         Authorization: `Bearer ${accessToken}`,
-    //       }),
-    //       body: data,
-    //     });
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    navigate("/");
   };
 
   return (
