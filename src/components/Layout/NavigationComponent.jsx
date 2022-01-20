@@ -1,4 +1,5 @@
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
+import { FaHeart, FaHome, FaPlusCircle, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function BottomMenu() {
@@ -9,12 +10,32 @@ function BottomMenu() {
       index="4"
       style={{ zIndex: "2" }}
     >
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="Recents" icon={1} />
-        <BottomNavigationAction label="Favorites" icon={2} />
-        <BottomNavigationAction label="Archive" icon={3} />
-        <Link to="/login">
-          <BottomNavigationAction label="Archive" icon={4} />
+      <BottomNavigation style={{ background: "#58b7fd" }} showLabels>
+        <Link to="/">
+          <BottomNavigationAction
+            style={{ fontSize: "30px", color: "#fff" }}
+            icon={<FaHome />}
+          />
+        </Link>
+
+        <Link to="create-product">
+          <BottomNavigationAction
+            style={{ fontSize: "28px", color: "#fff" }}
+            icon={<FaPlusCircle />}
+          />
+        </Link>
+        <Link to="favourite">
+          <BottomNavigationAction
+            style={{ fontSize: "28px", color: "#9a78cb" }}
+            icon={<FaHeart />}
+          />
+        </Link>
+
+        <Link to="login">
+          <BottomNavigationAction
+            style={{ fontSize: "28px", color: "#fff" }}
+            icon={<FaUserCircle />}
+          />
         </Link>
       </BottomNavigation>
     </Paper>

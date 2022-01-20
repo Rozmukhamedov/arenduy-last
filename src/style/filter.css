@@ -27,9 +27,11 @@
   width: 180px;
 }
 
-@media (max-width: 1150px) {
-  .input {
-    width: 20%;
+@media (max-width: 757px) {
+  .filter .filter-box .filter-form .filter-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 }
 

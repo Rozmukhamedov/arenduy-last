@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../../style/personinformation.css";
 import CustomSmpButton from "../CustomSmpButton";
 

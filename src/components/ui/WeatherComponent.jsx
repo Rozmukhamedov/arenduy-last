@@ -30,7 +30,7 @@ function Weather() {
   const day = dataCard.getDate();
   const year = dataCard.getUTCFullYear();
   const hours = dataCard.getHours();
-  console.log(weather);
+
   const newdate = day + "/" + month + "/" + year;
 
   return (
@@ -77,7 +77,7 @@ function Weather() {
           </div>
           <div className="weather-detail">
             <h4 className="weather-temperature">
-              {(weather.main?.temp - 273, 15)}&deg;
+              {Math.round(weather.main?.temp - 273)}&deg;
             </h4>
             <div>
               <p>{days[numDay]}</p>

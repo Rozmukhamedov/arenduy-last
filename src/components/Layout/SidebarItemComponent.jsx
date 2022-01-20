@@ -22,7 +22,7 @@ const SubMenu = ({ category, setSidebar, subnav, setSubnav }) => {
 
   return (
     <>
-      <div class="item-link" onClick={() => setItemLink(!itemLink)}>
+      <div className="item-link" onClick={() => setItemLink(!itemLink)}>
         <div>
           <div className="item-span">{category.name}</div>
         </div>

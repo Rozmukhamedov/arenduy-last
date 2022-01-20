@@ -271,6 +271,8 @@ function Filter({ urlCategory, urlSubcategory }) {
             fontSize="16px"
             borderRadius="10px"
             margin="auto"
+            height="48px"
+            width="88px"
             iconBtn={<FaSearch />}
           />
         </form>

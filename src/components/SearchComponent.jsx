@@ -33,7 +33,7 @@ function Search({ func, classForm }) {
       <input
         value={title}
         type="search"
-        autocomplete="off"
+        // autocomplete="off"
         onChange={(event) => setTitle(event.target.value)}
         name="search"
       />

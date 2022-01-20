@@ -47,5 +47,5 @@ img {
 .card-box .card-info .card-title .card-price {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
 }

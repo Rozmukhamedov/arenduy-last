@@ -24,12 +24,6 @@ function Navbar() {
   const [categories, setCategories] = useState([]);
 
   const [sidebar, setSidebar] = useState(false);
-  // const [subnav, setSubnav] = useState(false);
-
-  const Show = () => {
-    setSidebar(false);
-    // setSubnav(false);
-  };
 
   const [categoriesError, categoriesIsLoading, categoriesFetcher] =
     useCustomFetcher();
@@ -64,7 +58,6 @@ function Navbar() {
                   background={"#fff"}
                   fontSize={"18px"}
                   color={"#9a78cb"}
-                  padding={"10px 10px"}
                   border={"none"}
                   borderRadius={"6px"}
                   height={"40px"}
@@ -82,7 +75,6 @@ function Navbar() {
                     background={"#fff"}
                     fontSize={"18px"}
                     color={"#9a78cb"}
-                    padding={"10px 10px"}
                     border={"none"}
                     borderRadius={"6px"}
                     height={"40px"}
@@ -120,7 +112,7 @@ function Navbar() {
                   <Link
                     onClick={() => setSidebar(false)}
                     className="button-icon-user"
-                    to="profile"
+                    to="profile/myproducts"
                   >
                     <FaUserCircle />
                   </Link>
@@ -136,8 +128,6 @@ function Navbar() {
               {categories.map((category) => {
                 return (
                   <SubMenu
-                    // subnav={subnav}
-                    // setSubnav={setSubnav}
                     setSidebar={setSidebar}
                     key={category.slug}
                     category={category}
@@ -156,15 +146,14 @@ function Navbar() {
       ) : (
         <div>
           <div className="header-nav">
-            <div
-              className="header-button"
-              onClick={() => {
-                setSidebar(!sidebar);
-              }}
-            >
+            <div className="header-button" onClick={() => setSidebar(!sidebar)}>
               <FaBars />
             </div>
-            <Link className="mobile-logo" onClick={Show} to="/">
+            <Link
+              className="mobile-logo"
+              onClick={() => setSidebar(!sidebar)}
+              to="/"
+            >
               <img className="header-logo" src={IMAGES.imgLogo} alt="Arenduy" />
             </Link>
             <div className="header-end">
@@ -190,16 +179,17 @@ function Navbar() {
               {categories.map((category) => {
                 return (
                   <SubMenu
-                    // subnav={subnav}
-                    // setSubnav={setSubnav}
-                    // setSidebar={setSidebar}
+                    setSidebar={setSidebar}
                     key={category.slug}
                     category={category}
                   />
                 );
               })}
             </div>
-            <div className="header-button header-button-close" onClick={Show}>
+            <div
+              className="header-button header-button-close"
+              onClick={() => setSidebar(!sidebar)}
+            >
               <FaTimes />
             </div>
           </div>

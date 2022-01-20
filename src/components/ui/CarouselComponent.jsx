@@ -20,7 +20,7 @@ function Carousel() {
       <h2> Что нового</h2>
       <Slider {...settings}>
         {CAROUSEL_IMAGES?.images?.map((image) => (
-          <img src={image.imgPath} alt={image.name} />
+          <img src={image.imgPath} alt={image.name} key={image.name} />
         ))}
       </Slider>
     </div>
