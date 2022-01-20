@@ -12,7 +12,7 @@ function SliderOtherProducts({ subcategory, slug }) {
 
   useEffect(() => {
     productsFetcher(
-      (data) => console.log(data.results),
+      (data) => setproducts(data.results),
       `${URL}/similar/${subcategory}/${slug}`,
       {}
     );
@@ -55,18 +55,26 @@ function SliderOtherProducts({ subcategory, slug }) {
     ],
   };
 
+  if (productsError) return <div></div>;
+
   return (
     <div className="slider-other-products">
-      <h2>Похожие Объявления</h2>
-      <Slider {...settings}>
-        {products.map((product) => (
-          <Card
-            cardClass="slider-card-products"
-            key={product.slug}
-            response={product}
-          />
-        ))}
-      </Slider>
+      {products.lenth == 0 ? (
+        <>
+          <h2>Похожие Объявления</h2>
+          <Slider {...settings}>
+            {products.map((product) => (
+              <Card
+                cardClass="slider-card-products"
+                key={product.slug}
+                response={product}
+              />
+            ))}
+          </Slider>
+        </>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

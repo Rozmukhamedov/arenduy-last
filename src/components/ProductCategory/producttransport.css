@@ -1,12 +1,13 @@
 .product-transport-grid {
   display: grid;
   grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: repeat(4, auto);
   gap: 30px;
   grid-template-areas:
     "productSlide productInformation"
     "productSlide personInformation"
-    "productDetail productDescription";
+    "productDetail productDescription"
+    "otherslider otherslider";
 }
 
 @media (max-width: 667px) {
@@ -21,6 +22,7 @@
       "productInformation"
       "personInformation"
       "productDescription"
-      "productDetail";
+      "productDetail"
+      "otherslider";
   }
 }

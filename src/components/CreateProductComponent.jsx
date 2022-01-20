@@ -27,7 +27,7 @@ function CreateProduct() {
   const [floor, setFloor] = useState("");
 
   const [tag1, setTag1] = useState("Дом");
-  const [tag2, setTag2] = useState("Тошкент");
+  const [tag2, setTag2] = useState("Узбекистон");
 
   // transport
 
@@ -42,6 +42,9 @@ function CreateProduct() {
   const [position, setPosition] = useState("");
   const [mileage, setMileage] = useState("");
 
+  const [tag3, setTag3] = useState("Машина");
+  const [tag4, setTag4] = useState("Узбекистон");
+
   // address
 
   const [address, setAddress] = useState("");
@@ -51,14 +54,14 @@ function CreateProduct() {
   const location = useGeoLocation();
   const lat = [location.lat, location.lng];
   const all = lat.join(", ");
-  console.log(all);
+
   const [cookies] = useCookies(["tokens"]);
   const [accessToken, setAccessToken] = useState(cookies?.tokens?.access);
 
   const [newUserInfo, setNewUserInfo] = useState([]);
 
   const updateUploadedFiles = (files) =>
-    setNewUserInfo({ ...newUserInfo, files });
+    setNewUserInfo({ ...newUserInfo, Images: files });
 
   console.log(newUserInfo);
 
@@ -69,46 +72,86 @@ function CreateProduct() {
     console.log(category);
   }, [category]);
 
-  const [multipleFiles, setMultipleFiles] = useState();
+  // const [multipleFiles, setMultipleFiles] = useState();
 
-  const MultipleFileChange = (e) => {
-    setMultipleFiles(e.target.files);
-  };
+  // const MultipleFileChange = (e) => {
+  //   setMultipleFiles(e.target.files);
+  // };
 
-  const createProduct = async (e) => {
+  const createProduct = (e) => {
     e.preventDefault();
+    if (category == "real_estate") {
+      const requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        }),
+        body: JSON.stringify({
+          product: {
+            title: title,
+            description: description,
+            price: price,
+            address: address,
+            city: city,
+            draft: draft,
+            subcategory: subcategory,
+            location: all,
+            tags: [tag1, tag2],
+          },
+          total_area: totalarea,
+          rooms: rooms,
+          floor: floor,
+        }),
+      };
 
-    const requestOptionsRealEstate = {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      }),
-      body: JSON.stringify({
-        product: {
-          title: title,
-          description: description,
-          price: price,
-          address: address,
-          city: city,
-          draft: draft,
-          subcategory: subcategory,
-          location: all,
-          tags: [tag1, tag2],
+      createProductsFetcher(
+        (data) => {
+          console.log(data);
         },
-        total_area: totalarea,
-        rooms: rooms,
-        floor: floor,
-      }),
-    };
+        `${URL}/${category}/${subcategory}/add/`,
+        requestOptions
+      );
+    } else {
+      const requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        }),
+        body: JSON.stringify({
+          product: {
+            image: newUserInfo,
+            title: title,
+            description: description,
+            price: price,
+            address: address,
+            city: city,
+            draft: false,
+            subcategory: subcategory,
+            tags: [tag3, tag4],
+          },
+          brand: brand,
+          model: model,
+          color: color,
+          body_type: bodytype,
+          fuel_type: fueltype,
+          year_issue: yearissue,
+          transmission: transmission,
+          air_condition: aircondition,
+          position: position,
+          mileage: mileage,
+        }),
+      };
 
-    createProductsFetcher(
-      (data) => {
-        console.log(data);
-      },
-      `${URL}/${category}/${subcategory}/add/`,
-      requestOptionsRealEstate
-    );
+      createProductsFetcher(
+        (data) => {
+          console.log(data);
+        },
+        `${URL}/${category}/${subcategory}/add/`,
+        requestOptions
+      );
+    }
 
     // try {
     //   const response = await fetch(
@@ -382,21 +425,24 @@ function CreateProduct() {
               variant="outlined"
             />
           </div>
-
-          <YMaps>
-            <div className="map">
-              <Map
-                width="100%"
-                height="300px"
-                defaultState={{
-                  center: [location.lat, location.lng],
-                  zoom: 15,
-                }}
-              >
-                <Placemark geometry={[location.lat, location.lng]} />
-              </Map>
-            </div>
-          </YMaps>
+          {category == "real_estate" ? (
+            <YMaps>
+              <div className="map">
+                <Map
+                  width="100%"
+                  height="300px"
+                  defaultState={{
+                    center: [location.lat, location.lng],
+                    zoom: 15,
+                  }}
+                >
+                  <Placemark geometry={[location.lat, location.lng]} />
+                </Map>
+              </div>
+            </YMaps>
+          ) : (
+            <div></div>
+          )}
         </div>
         <CustomSmpButton
           textBtn="Добавить"

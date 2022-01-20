@@ -5,10 +5,12 @@ import { URLACC } from "../constants/applicationConstants";
 import { useAuth } from "../hooks/useAuth";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import "../style/login.css";
+import { useAlert } from "react-alert";
 
 function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const alert = useAlert();
 
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +45,7 @@ function LoginPage() {
           setIsLoggedIn(true);
           signin(() => navigate(fromPage, { replace: true }));
         } else {
-          alert("Не правильно");
+          alert.error("Не правильно!");
         }
       },
       `${URLACC}/login/`,

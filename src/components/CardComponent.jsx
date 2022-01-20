@@ -6,10 +6,12 @@ import CustomSmpButton from "./CustomSmpButton";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import useCustomFetcher from "../hooks/useCustomFetcher";
+import { useAlert } from "react-alert";
 
 function Card({ response, category, funcBtn, cardClass }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const alert = useAlert();
 
   const [isFavourite, setIsFavourite] = useState(false);
 
@@ -31,15 +33,15 @@ function Card({ response, category, funcBtn, cardClass }) {
       }),
     };
 
-    productsFetcher(
-      (response) => {
-        response.detail == "Given token not valid for any token type"
-          ? navigate("/login")
-          : setIsFavourite(!isFavourite);
-      },
-      `${URL}/favorite/`,
-      requestOptions
-    );
+    console.log(cookies);
+
+    if (cookies?.tokens != undefined) {
+      productsFetcher(() => {}, `${URL}/favorite/`, requestOptions);
+      setIsFavourite(!isFavourite);
+      alert.show("Добавлен в избраннное");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (

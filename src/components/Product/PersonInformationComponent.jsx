@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../style/personinformation.css";
 import CustomSmpButton from "../CustomSmpButton";
 
@@ -9,17 +10,20 @@ export default function PersonInformation({ response }) {
         <h4>{response?.phone_number}</h4>
       </div>
       <div className="callback">
-        <CustomSmpButton
-          textBtn="Позвонить"
-          background="#bb9de5"
-          fonstsSize="16px"
-          color="#fff"
-          padding="10px 10px"
-          border="none"
-          borderRadius="5px"
-          margin="0 0 5px 0"
-          width="100px"
-        />
+        <a href={`tel:${response?.phone_number}`}>
+          <CustomSmpButton
+            textBtn="Позвонить"
+            background="#bb9de5"
+            fonstsSize="16px"
+            color="#fff"
+            padding="10px 10px"
+            border="none"
+            borderRadius="5px"
+            margin="0 0 5px 0"
+            width="100px"
+          />
+        </a>
+
         <CustomSmpButton
           textBtn="Сообщения"
           background="none"
