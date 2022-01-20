@@ -77,7 +77,7 @@ function Weather() {
           </div>
           <div className="weather-detail">
             <h4 className="weather-temperature">
-              {Math.round(weather.main?.temp - 273)}&deg;
+              {Math.round(weather.main?.temp - 276)}&deg;
             </h4>
             <div>
               <p>{days[numDay]}</p>

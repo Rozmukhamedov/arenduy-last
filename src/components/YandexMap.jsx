@@ -5,10 +5,11 @@ import useCustomFetcher from "../hooks/useCustomFetcher";
 import Loader from "./ui/LoaderComponent";
 import { split } from "lodash";
 import { useNavigate } from "react-router-dom";
+import IconMapYan from "../images/iconMap.png";
 
 function YandexMap() {
   const [productsGeolocaitons, setProductsGeolocaitons] = useState([]);
-  const [geolocation, setGeolocation] = useState();
+
   const [mapError, mapIsLoading, mapFetcher] = useCustomFetcher();
   console.log(productsGeolocaitons);
 
@@ -65,8 +66,7 @@ function YandexMap() {
               geometry={[locM(n), locN(n)]}
               options={{
                 // iconLayout: "default#images",
-                iconImageHref:
-                  "https://static.tildacdn.com/tild3061-3235-4537-b066-616662373363/Group_783.svg",
+                iconImageHref: `${IconMapYan}`,
                 iconImageSize: [130, 130],
                 iconImageOffset: [-65, -110],
               }}
