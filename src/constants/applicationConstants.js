@@ -1,5 +1,5 @@
-export const URL = `https://rent-vlk.herokuapp.com/v1`;
-export const URLACC = `https://rent-vlk.herokuapp.com/accounts`;
+export const URL = `http://185.217.131.19:8000//v1`;
+export const URLACC = `http://185.217.131.19:8000/accounts`;
 
 export const CURRENCIES_API_URL = `https://nbu.uz/exchange-rates/json/`;
 export const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?id=1512569&appid=3d84b90b61a34e9033f9046d6f8aa9b2`;
