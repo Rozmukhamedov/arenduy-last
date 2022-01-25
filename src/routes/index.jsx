@@ -18,6 +18,8 @@ import FavouritePage from "../pages/FavouritePage";
 import YandexMap from "../components/YandexMap";
 import FilterResultPage from "../pages/FilterResultPage";
 import CreateProduct from "../components/CreateProductComponent";
+import ResetPasswordPage from "../pages/ResetPasswordPage";
+import ConfirmPassword from "../pages/ConfirmPasswordPage";
 
 function RoutesMain() {
   return (
@@ -28,7 +30,6 @@ function RoutesMain() {
             <Route index element={<Home />} />
             <Route path="search" element={<SearchResultPage />} />
             <Route path="filter" element={<FilterResultPage />} />
-
             <Route
               path="login"
               element={
@@ -44,12 +45,28 @@ function RoutesMain() {
                   <Registration />
                 </PublicAuth>
               }
-            ></Route>
+            />
             <Route
               path="registration/confirm"
               element={
                 <PublicAuth>
                   <Confirm />
+                </PublicAuth>
+              }
+            />
+            <Route
+              path="forgot-password"
+              element={
+                <PublicAuth>
+                  <ResetPasswordPage />
+                </PublicAuth>
+              }
+            />
+            <Route
+              path="forgot-password/confirm"
+              element={
+                <PublicAuth>
+                  <ConfirmPassword />
                 </PublicAuth>
               }
             />
@@ -81,7 +98,7 @@ function RoutesMain() {
                 </PrivateAuth>
               }
             />
-            <Route path="map" element={<YandexMap />} />
+
             <Route path=":category" element={<Navigate to="/" />} />
             <Route path=":category/:subcategory" element={<ProductsPage />} />
             <Route
@@ -91,6 +108,7 @@ function RoutesMain() {
 
             <Route path="*" element={<Notfoundpage />} />
           </Route>
+          <Route path="map" element={<YandexMap />} />
         </Routes>
       </AuthProvider>
     </>

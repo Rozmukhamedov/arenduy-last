@@ -6,6 +6,7 @@ import "../style/filter.css";
 import CustomInput from "./inputs/CustomInput";
 import CustomSmpButton from "./CustomSmpButton";
 import { FaSearch } from "react-icons/fa";
+import useWindowSize from "../hooks/useWindowSize";
 
 function Filter({ urlCategory, urlSubcategory }) {
   const [searchParams] = useSearchParams();
@@ -34,6 +35,10 @@ function Filter({ urlCategory, urlSubcategory }) {
   const [transmission, setTransmission] = useState("");
   const [mileage, setMileage] = useState("");
 
+  const { size } = useWindowSize();
+
+  const [mobileFilter, setMobileFilter] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -55,229 +60,479 @@ function Filter({ urlCategory, urlSubcategory }) {
   };
 
   return (
-    <div className="filter">
-      <h2>Фильтр</h2>
-      <div className="filter-box">
-        <form onSubmit={handleSubmit} className="filter-form">
-          <div className="filter-flex">
-            <TextField
-              className="input"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              label="Названия"
-              variant="outlined"
-              style={{
-                margin: "0 5px 10px 5px",
-              }}
-            />
+    <>
+      {size > 600 ? (
+        <div className="filter">
+          <h2>Фильтр</h2>
+          <div className="filter-box">
+            <form onSubmit={handleSubmit} className="filter-form">
+              <div className="filter-flex">
+                <TextField
+                  className="input"
+                  required
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  label="Названия"
+                  variant="outlined"
+                  style={{
+                    margin: "0 5px 10px 5px",
+                  }}
+                />
 
-            <CustomInput
-              className="input"
-              label="Город"
-              url={`${URL}/city/`}
-              setValue={setCity}
-              margin="0 5px 10px 5px"
-            />
-
-            <CustomInput
-              className="input"
-              title={category}
-              label="Категория"
-              url={`${URL}/category/`}
-              setValue={setCategory}
-              margin="0 5px 10px 5px"
-            />
-
-            {category != "transport" ? (
-              <>
                 <CustomInput
                   className="input"
-                  title={subCategory}
-                  label="Подкатегория"
-                  url={`${URL}/category/real_estate/`}
-                  setValue={setSubCategory}
+                  label="Город"
+                  url={`${URL}/city/`}
+                  setValue={setCity}
                   margin="0 5px 10px 5px"
-                  category={category}
                 />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMinArea(e.target.value)}
-                  label="от 1 м²"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMaxArea(e.target.value)}
-                  label="до 100 м²"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  label="от 1"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  label="до 1 000 000 000"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setFloor(e.target.value)}
-                  label="Этаж"
-                  variant="outlined"
-                  type="number"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setRoom(e.target.value)}
-                  label="Комната"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-              </>
-            ) : (
-              <>
+
                 <CustomInput
                   className="input"
-                  title={subCategory}
-                  label="Подкатегория"
-                  url={`${URL}/category/transport/`}
-                  setValue={setSubCategory}
-                  width="180px"
+                  title={category}
+                  label="Категория"
+                  url={`${URL}/category/`}
+                  setValue={setCategory}
                   margin="0 5px 10px 5px"
-                  category={category}
                 />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  label="от 1"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <TextField
-                  className="input"
-                  required
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  label="до 1 000 000 000"
-                  type="number"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-                <CustomInput
-                  margin="0 5px 10px 5px"
-                  className="input"
-                  label="Цвет"
-                  url={`${URL}/transport/color/`}
-                  setValue={setColor}
-                />
-                <TextField
-                  select
-                  className="input"
-                  label="Тип топлива"
-                  required
-                  value={fueltype}
-                  onChange={(e) => setFueltype(e.target.value)}
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                >
-                  <MenuItem key={1} value="benzin">
-                    Бензин
-                  </MenuItem>
-                  <MenuItem key={2} value="elektr">
-                    Электро
-                  </MenuItem>
-                  <MenuItem key={3} value="dizel">
-                    Дизел
-                  </MenuItem>
-                </TextField>
-                <TextField
-                  className="input"
-                  select
-                  label="Коробка передач"
-                  required
-                  value={transmission}
-                  onChange={(e) => setTransmission(e.target.value)}
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                >
-                  <MenuItem key={1} value="mexanika">
-                    Механика
-                  </MenuItem>
-                  <MenuItem key={2} value="avtomat">
-                    Автомат
-                  </MenuItem>
-                </TextField>
-                <TextField
-                  className="input"
-                  type="number"
-                  required
-                  value={mileage}
-                  onChange={(e) => setMileage(e.target.value)}
-                  label="Пробег"
-                  variant="outlined"
-                  style={{
-                    margin: "0 5px 10px 5px",
-                  }}
-                />
-              </>
-            )}
+
+                {category != "transport" ? (
+                  <>
+                    <CustomInput
+                      className="input"
+                      title={subCategory}
+                      label="Подкатегория"
+                      url={`${URL}/category/real_estate/`}
+                      setValue={setSubCategory}
+                      margin="0 5px 10px 5px"
+                      category={category}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMinArea(e.target.value)}
+                      label="от 1 м²"
+                      minRows="1"
+                      maxRows="99"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMaxArea(e.target.value)}
+                      minRows="2"
+                      maxRows="100"
+                      label="до 100 м²"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMinPrice(e.target.value)}
+                      label="от 1 сом"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                      label="до 1 000 000 000 сом"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setFloor(e.target.value)}
+                      label="Этаж"
+                      variant="outlined"
+                      type="number"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setRoom(e.target.value)}
+                      label="Комната"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <CustomInput
+                      className="input"
+                      title={subCategory}
+                      label="Подкатегория"
+                      url={`${URL}/category/transport/`}
+                      setValue={setSubCategory}
+                      width="180px"
+                      margin="0 5px 10px 5px"
+                      category={category}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMinPrice(e.target.value)}
+                      label="от 1 сом"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <TextField
+                      className="input"
+                      required
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                      label="до 1 000 000 000 сом"
+                      type="number"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                    <CustomInput
+                      margin="0 5px 10px 5px"
+                      className="input"
+                      label="Цвет"
+                      url={`${URL}/transport/color/`}
+                      setValue={setColor}
+                    />
+                    <TextField
+                      select
+                      className="input"
+                      label="Тип топлива"
+                      required
+                      value={fueltype}
+                      onChange={(e) => setFueltype(e.target.value)}
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    >
+                      <MenuItem key={1} value="benzin">
+                        Бензин
+                      </MenuItem>
+                      <MenuItem key={2} value="elektr">
+                        Электро
+                      </MenuItem>
+                      <MenuItem key={3} value="dizel">
+                        Дизел
+                      </MenuItem>
+                    </TextField>
+                    <TextField
+                      className="input"
+                      select
+                      label="Коробка передач"
+                      required
+                      value={transmission}
+                      onChange={(e) => setTransmission(e.target.value)}
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    >
+                      <MenuItem key={1} value="mexanika">
+                        Механика
+                      </MenuItem>
+                      <MenuItem key={2} value="avtomat">
+                        Автомат
+                      </MenuItem>
+                    </TextField>
+                    <TextField
+                      className="input"
+                      type="number"
+                      required
+                      value={mileage}
+                      onChange={(e) => setMileage(e.target.value)}
+                      label="Пробег"
+                      variant="outlined"
+                      style={{
+                        margin: "0 5px 10px 5px",
+                      }}
+                    />
+                  </>
+                )}
+              </div>
+              <CustomSmpButton
+                background="#53c4f7"
+                color="#fff"
+                border="none"
+                padding="10px 10px"
+                fontSize="16px"
+                borderRadius="10px"
+                margin="auto"
+                height="48px"
+                width="88px"
+                iconBtn={<FaSearch />}
+              />
+            </form>
           </div>
+        </div>
+      ) : (
+        <div className="filter">
           <CustomSmpButton
-            btnClassName="btnClass"
-            background="#53c4f7"
+            background="#9a78cb"
             color="#fff"
             border="none"
             padding="10px 10px"
             fontSize="16px"
             borderRadius="10px"
-            margin="auto"
+            margin="0 20px 10px auto"
             height="48px"
-            width="88px"
-            iconBtn={<FaSearch />}
+            width="100px"
+            textBtn="Фильтр"
+            funcBtn={() => setMobileFilter(!mobileFilter)}
           />
-        </form>
-      </div>
-    </div>
+          {mobileFilter ? (
+            <div className="filter-box">
+              <form onSubmit={handleSubmit} className="filter-form">
+                <div className="filter-flex">
+                  <TextField
+                    className="input"
+                    required
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    label="Названия"
+                    variant="outlined"
+                    style={{
+                      margin: "0 5px 10px 5px",
+                    }}
+                  />
+
+                  <CustomInput
+                    className="input"
+                    label="Город"
+                    url={`${URL}/city/`}
+                    setValue={setCity}
+                    margin="0 5px 10px 5px"
+                  />
+
+                  <CustomInput
+                    className="input"
+                    title={category}
+                    label="Категория"
+                    url={`${URL}/category/`}
+                    setValue={setCategory}
+                    margin="0 5px 10px 5px"
+                  />
+
+                  {category != "transport" ? (
+                    <>
+                      <CustomInput
+                        className="input"
+                        title={subCategory}
+                        label="Подкатегория"
+                        url={`${URL}/category/real_estate/`}
+                        setValue={setSubCategory}
+                        margin="0 5px 10px 5px"
+                        category={category}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMinArea(e.target.value)}
+                        label="от 1 м²"
+                        minRows="1"
+                        maxRows="99"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMaxArea(e.target.value)}
+                        minRows="2"
+                        maxRows="100"
+                        label="до 100 м²"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMinPrice(e.target.value)}
+                        label="от 1 сом"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        label="до 1 000 000 000 сом"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setFloor(e.target.value)}
+                        label="Этаж"
+                        variant="outlined"
+                        type="number"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setRoom(e.target.value)}
+                        label="Комната"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <CustomInput
+                        className="input"
+                        title={subCategory}
+                        label="Подкатегория"
+                        url={`${URL}/category/transport/`}
+                        setValue={setSubCategory}
+                        width="180px"
+                        margin="0 5px 10px 5px"
+                        category={category}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMinPrice(e.target.value)}
+                        label="от 1 сом"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <TextField
+                        className="input"
+                        required
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        label="до 1 000 000 000 сом"
+                        type="number"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                      <CustomInput
+                        margin="0 5px 10px 5px"
+                        className="input"
+                        label="Цвет"
+                        url={`${URL}/transport/color/`}
+                        setValue={setColor}
+                      />
+                      <TextField
+                        select
+                        className="input"
+                        label="Тип топлива"
+                        required
+                        value={fueltype}
+                        onChange={(e) => setFueltype(e.target.value)}
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      >
+                        <MenuItem key={1} value="benzin">
+                          Бензин
+                        </MenuItem>
+                        <MenuItem key={2} value="elektr">
+                          Электро
+                        </MenuItem>
+                        <MenuItem key={3} value="dizel">
+                          Дизел
+                        </MenuItem>
+                      </TextField>
+                      <TextField
+                        className="input"
+                        select
+                        label="Коробка передач"
+                        required
+                        value={transmission}
+                        onChange={(e) => setTransmission(e.target.value)}
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      >
+                        <MenuItem key={1} value="mexanika">
+                          Механика
+                        </MenuItem>
+                        <MenuItem key={2} value="avtomat">
+                          Автомат
+                        </MenuItem>
+                      </TextField>
+                      <TextField
+                        className="input"
+                        type="number"
+                        required
+                        value={mileage}
+                        onChange={(e) => setMileage(e.target.value)}
+                        label="Пробег"
+                        variant="outlined"
+                        style={{
+                          margin: "0 5px 10px 5px",
+                        }}
+                      />
+                    </>
+                  )}
+                </div>
+                <CustomSmpButton
+                  background="#53c4f7"
+                  color="#fff"
+                  border="none"
+                  padding="10px 10px"
+                  fontSize="16px"
+                  borderRadius="10px"
+                  margin="auto"
+                  height="48px"
+                  width="100%"
+                  textBtn={"Поиск"}
+                />
+              </form>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      )}
+    </>
   );
 }
 

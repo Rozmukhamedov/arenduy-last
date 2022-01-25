@@ -5,7 +5,7 @@ import { URLACC } from "../constants/applicationConstants";
 import useCustomFetcher from "../hooks/useCustomFetcher";
 import "../style/login.css";
 
-function Confirm() {
+function ConfirmPassword() {
   const [code, setCode] = useState("");
 
   const navigate = useNavigate();
@@ -29,13 +29,12 @@ function Confirm() {
     };
 
     ConfirmFetcher(
-      (response) => {
-        alert(response);
+      () => {
+        navigate("/login", { replace: true });
       },
-      `${URLACC}/reset-password/`,
+      `${URLACC}/verify-code-password/`,
       requestOptions
     );
-    navigate("/", { replace: true });
   };
 
   return (
@@ -67,4 +66,4 @@ function Confirm() {
   );
 }
 
-export default Confirm;
+export default ConfirmPassword;

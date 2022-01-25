@@ -14,8 +14,6 @@ export default function ProductInformation({ response }) {
 
   const [cookies] = useCookies(["tokens"]);
 
-  const [accessToken, setAccessToken] = useState(cookies?.tokens?.access);
-
   const navigate = useNavigate();
 
   const [productsError, productsIsLoading, productsFetcher] =
@@ -23,12 +21,12 @@ export default function ProductInformation({ response }) {
 
   const addFavourite = (slug) => {
     setFavourite(false);
-    if (accessToken != undefined) {
+    if (cookies?.tokens?.access != undefined) {
       const requestOptions = {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${cookies?.tokens?.access}`,
         }),
         body: JSON.stringify({
           slug: slug,

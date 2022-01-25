@@ -21,7 +21,15 @@ function CustomInput({
   }, [category]);
 
   if (inputIsLoading) {
-    return <TextField disabled id="outlined-disabled" label={label} />;
+    return (
+      <TextField
+        className={className}
+        style={{ width, height, margin }}
+        disabled
+        id="outlined-disabled"
+        label={label}
+      />
+    );
   }
 
   if (inputError) {
@@ -33,7 +41,7 @@ function CustomInput({
       style={{
         width,
         height,
-        margin: margin,
+        margin,
       }}
       className={className}
       required

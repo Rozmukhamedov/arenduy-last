@@ -6,7 +6,7 @@ import SliderComponent from "../components/SliderProductsComponent";
 import BestProducts from "../components/BestProductsComponent";
 import "../style/home.css";
 import { useState, useEffect } from "react";
-import LogoLoader from "../images/arenduy2.mov";
+import LogoLoader from "../images/arenduy5.gif";
 
 function Home() {
   const [loaderLogo, setLoaderLogo] = useState(false);

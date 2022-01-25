@@ -48,32 +48,24 @@ function Registration() {
     <div className="registration-border">
       <h3>Регистрация</h3>
       <form onSubmit={signUp}>
-        <input
-          required
-          type="name"
-          value={name}
-          placeholder="Имя"
-          onChange={(e) => setName(e.target.value)}
-        />
+        <label aria-hidden="true">Имя</label>
+        <input required type="name" onChange={(e) => setName(e.target.value)} />
+        <label aria-hidden="true">Фамилия</label>
         <input
           required
           type="surname"
-          value={surname}
-          placeholder="Фамилия"
           onChange={(e) => setSurname(e.target.value)}
         />
+        <label aria-hidden="true">Номер телефона</label>
         <input
           required
           type="tel"
-          value={number}
-          placeholder="Номер телефона"
           onChange={(e) => setNumber(e.target.value)}
         />
+        <label aria-hidden="true">Пароль</label>
         <input
           required
           type="password"
-          value={password}
-          placeholder="Пароль"
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="registration-flex">
@@ -98,6 +90,7 @@ function Registration() {
               border={"none"}
               borderRadius={"5px"}
               height={"40px"}
+              background={"none"}
             />
           </Link>
         </div>

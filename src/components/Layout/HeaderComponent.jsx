@@ -151,7 +151,7 @@ function Navbar() {
             </div>
             <Link
               className="mobile-logo"
-              onClick={() => setSidebar(!sidebar)}
+              onClick={() => setSidebar(false)}
               to="/"
             >
               <img className="header-logo" src={IMAGES.imgLogo} alt="Arenduy" />

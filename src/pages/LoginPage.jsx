@@ -14,7 +14,6 @@ function LoginPage() {
 
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState("");
 
   const { signin, setCookie, setIsLoggedIn } = useAuth();
 
@@ -91,9 +90,9 @@ function LoginPage() {
             margin={"0 40px 0 5px "}
           />
           <div>
-            {/* <Link className="login-link" to="/registration">
+            <Link className="login-link" to="/forgot-password">
               Забыл пароль?
-            </Link> */}
+            </Link>
             <Link className="login-link" to="/registration">
               Регистрация
             </Link>

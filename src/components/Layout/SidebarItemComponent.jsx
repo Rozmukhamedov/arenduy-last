@@ -35,7 +35,7 @@ const SubMenu = ({ category, setSidebar, subnav, setSubnav }) => {
           return (
             <Link
               className="dropdown-item"
-              to={`${category.slug}/${subcategory.slug}/`}
+              to={`/${category.slug}/${subcategory.slug}/`}
               key={subcategory.slug}
               onClick={() => {
                 setSidebar(false);
